@@ -13,7 +13,7 @@ life_action_inUse = true;
 
 _names = "";
 {
-	if(SEL(_x,2) > 150000) then {
+	if(SEL(_x,2) > 15000) then {
 		_val = round((SEL(_x,2)) / 16);
 	};
 	[[SEL(_x,0),SEL(_x,1),"483",_val],"life_fnc_wantedAdd",false,false] call life_fnc_MP;

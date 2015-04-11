@@ -91,27 +91,49 @@ switch (_code) do {
 		};
 	};
 	
-	//Restraining (Shift + R)
-	case 19: {
+	//Restraining or robbing (Shift + R)
+	case 19:
+	{
 		if(_shift) then {_handled = true;};
-		if(_shift && playerSide == west && {!isNull cursorTarget} && {cursorTarget isKindOf "Man"} && {(isPlayer cursorTarget)} && {(side cursorTarget in [civilian,independent])} && {alive cursorTarget} && {cursorTarget distance player < 3.5} && {!(cursorTarget GVAR "Escorting")} && {!(cursorTarget GVAR "restrained")} && {speed cursorTarget < 1}) then {
+		if(_shift && playerSide == west && !isNull cursorTarget && cursorTarget isKindOf "Man" && (isPlayer cursorTarget) && (side cursorTarget == civilian) && alive cursorTarget && cursorTarget distance player < 3.5 && !(cursorTarget GVAR "Escorting") && !(cursorTarget GVAR "restrained") && speed cursorTarget < 1) then
+		{
 			[] call life_fnc_restrainAction;
+		};
+		
+		//Robbing
+		if(_shift && playerSide == civilian && !isNull cursorTarget && cursorTarget isKindOf "Man" && isPlayer cursorTarget && alive cursorTarget && cursorTarget distance player < 4 && speed cursorTarget < 1) then
+		{
+			if((animationState cursorTarget) != "Incapacitated" && (currentWeapon player == RIFLE OR currentWeapon player == PISTOL) && currentWeapon player != "" && !life_knockout && !(player GVAR["restrained",false]) && !life_istazed && !(player GVAR["surrender",false])) then
+			{
+				[cursorTarget] spawn life_fnc_knockoutAction;
+			};
+			_handled = true;
 		};
 	};
 	
-	//Knock out, this is experimental and yeah...
-	case 34: {
+	//Shift + G (surrender)
+	case 34:
+	{
 		if(_shift) then {_handled = true;};
-		if(_shift && playerSide == civilian && {!isNull cursorTarget} && {cursorTarget isKindOf "Man"} && {isPlayer cursorTarget} && {alive cursorTarget} && {cursorTarget distance player < 4} && {speed cursorTarget < 1}) then {
-			if(!(EQUAL(animationState cursorTarget,"Incapacitated")) && {(EQUAL(currentWeapon player,RIFLE))} OR {EQUAL(currentWeapon player,PISTOL)} && {!(EQUAL(currentWeapon player,""))} && {!life_knockout} && {!(player GVAR ["restrained",false])} && {!life_istazed}) then {
-				[cursorTarget] spawn life_fnc_knockoutAction;
+
+		if (_shift) then
+		{
+			if (vehicle player == player && !(player GVAR ["restrained", false]) && (animationState player) != "Incapacitated" && !life_istazed) then
+			{
+				if (player GVAR ["surrender", false]) then
+				{
+					player SVAR ["surrender", false, true];
+				} else
+				{
+					[] spawn life_fnc_surrender;
+				};
 			};
 		};
 	};
-
+	
 	//T Key (Trunk)
 	case 20: {
-		if(!_alt && !_ctrlKey) then {
+		if(!_alt && !_ctrlKey && !life_is_processing) then {
 			if(vehicle player != player && alive vehicle player) then {
 				if((vehicle player) in life_vehicles) then {
 					[vehicle player] call life_fnc_openInventory;
@@ -148,7 +170,7 @@ switch (_code) do {
 	
 	//Y Player Menu
 	case 21: {
-		if(!_alt && !_ctrlKey && !dialog) then {
+		if(!_alt && !_ctrlKey && !dialog && !life_is_processing) then {
 			[] call life_fnc_p_openMenu;
 		};
 	};

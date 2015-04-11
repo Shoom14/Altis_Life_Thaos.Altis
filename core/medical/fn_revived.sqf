@@ -20,7 +20,7 @@ life_deathCamera cameraEffect ["TERMINATE","BACK"];
 camDestroy life_deathCamera;
 
 //Take fee for services.
-if(BANK > (call life_revive_fee)) then {
+if(BANK > (LIFE_SETTINGS(getNumber,"revive_fee"))) then {
 	SUB(BANK,(LIFE_SETTINGS(getNumber,"revive_fee")));
 } else {
 	BANK = 0;

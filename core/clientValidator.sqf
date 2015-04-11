@@ -1,3 +1,5 @@
+#define SPY "spy_log"
+#define steamid getPlayerUID player
 /*
 	Description:
 	Loops through a list of variables and checks whether
@@ -13,8 +15,9 @@ _vars = [
 
 {
 	if(!isNil {(missionNamespace getVariable _x)}) exitWith {
-		[[profileName,getPlayerUID player,format["VariableSetBeforeInitialized_%1",_x]],"SPY_fnc_cookieJar",false,false] call life_fnc_MP;
+		[[profileName,steamid,format["VariableSetBeforeInitialized_%1",_x]],"SPY_fnc_cookieJar",false,false] call life_fnc_MP;
 		[[profileName,format["Variable set before client initialized: %1",_x]],"SPY_fnc_notifyAdmins",true,false] call life_fnc_MP;
+		[[SPY,[(format["Variable set before client initialized: %1",_x])],profileName,steamid],"TON_fnc_logIt",false,false] call life_fnc_MP;
 		sleep 0.5;
 		failMission "SpyGlass";
 	};

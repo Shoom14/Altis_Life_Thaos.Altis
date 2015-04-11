@@ -14,7 +14,7 @@ if(!(_house isKindOf "House_F")) exitWith {};
 if(isNil {_house getVariable "house_owner"}) exitWith {hint "There is no owner for this house."};
 closeDialog 0;
 
-_houseCfg = [(typeOf _house)] call life_fnc_houseConfig;
+_houseCfg = [M_CONFIG(getNumber,"Houses",typeOf(_house),"price"),M_CONFIG(getNumber,"Houses",typeOf(_house),"maxStorage")];
 if(count _houseCfg == 0) exitWith {};
 
 _action = [

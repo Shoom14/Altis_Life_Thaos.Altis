@@ -99,8 +99,7 @@ if(_bool) then {
 								if(_item in (assignedItems  player)) then {
 									player addItem _item;
 								} else {
-									player addItem _item; 
-									player assignItem _item;
+									player linkItem _item;
 								};
 							};
 						};
@@ -113,11 +112,9 @@ if(_bool) then {
 							if(_override) then {
 								player addItem _item;
 							} else {
-								if(EQUAL(headGear player,_item)) then{
-									player addItem _item;
-								} else {
+								if(!(EQUAL(headGear player,_item))) then{
 									if(!(EQUAL(headGear player,""))) then {removeHeadGear player;};
-									player addHeadGear _item;
+                                    player addHeadGear _item;
 								};
 							};
 						};
@@ -338,8 +335,7 @@ if(_bool) then {
 							if(_override) then {
 								player addItem _item;
 							} else {
-								player addItem _item;
-								player assignItem _item;
+								player linkItem _item;
 							};
 						};
 					};
@@ -351,8 +347,7 @@ if(_bool) then {
 							if(_override) then {
 								player addItem _item;
 							} else {
-								player addItem _item;
-								player assignItem _item;
+								player linkItem _item;
 							};
 						};
 					};
@@ -475,12 +470,12 @@ if(_bool) then {
 				};
 			} else {
 				switch(SEL(_details,5)) do {
-					case 0: {player unassignItem _item; player removeItem _item;};
+					case 0: {player unlinkItem _item;};
 					case 605: {if(EQUAL(headGear player,_item)) then {removeHeadgear player} else {player removeItem _item};};
 					case 801: {if(EQUAL(uniform player,_item)) then {removeUniform player} else {player removeItem _item};};
 					case 701: {if(EQUAL(vest player,_item)) then {removeVest player} else {player removeItem _item};};
-					case 621: {player unassignItem _item; player removeItem _item;};
-					case 616: {player unassignItem _item; player removeItem _item;};
+					case 621: {player unlinkItem _item;};
+					case 616: {player unlinkItem _item;};
 					default {
 						switch (true) do {
 							case (_item in RIFLE_ITEMS) : {player removePrimaryWeaponItem _item;};
