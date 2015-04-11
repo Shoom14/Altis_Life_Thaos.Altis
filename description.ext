@@ -1,4 +1,4 @@
-author = "Tonic";
+author = "Author Tonic. Modified Thaos Team";
 onLoadName = "Altis Life RPG v4.0";
 onLoadMission = "A RPG game mode developed by Tonic";
 joinUnassigned = 1;
@@ -103,7 +103,7 @@ class CfgNotifications
 {
 	class MedicalRequestEmerg
 	{
-		title = "EMS Requested";
+		title = "Вызов скорой";
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
 		description = "%1";
 		duration = 5;
@@ -112,7 +112,7 @@ class CfgNotifications
 	
 	class DeliveryAssigned
 	{
-		title = "Delivery Job Accepted";
+		title = "Заказ на доставку почты получен";
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
 		description = "%1";
 		duration = 10;
@@ -121,7 +121,7 @@ class CfgNotifications
 	
 	class DeliveryFailed
 	{
-		title = "Delivery Job Failed";
+		title = "Доставка почты сорвалась";
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconfailed_ca.paa";
 		description = "%1";
 		duration = 7;
@@ -130,7 +130,7 @@ class CfgNotifications
 	
 	class DeliverySucceeded
 	{
-		title = "Delivery Job Completed";
+		title = "Доставка почты выполнена";
 		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcondone_ca.paa";
 		description = "%1";
 		duration = 6;
@@ -139,7 +139,7 @@ class CfgNotifications
 	
 	class TextMessage
 	{
-		title = "Received A Text Message";
+		title = "Получено сообщение";
 		iconPicture = "icons\messagenew.paa";
 		description = "%1";
 		duration = 10;
@@ -148,7 +148,7 @@ class CfgNotifications
 	
 	class PoliceDispatch
 	{
-		title = "911 Dispatch Center";
+		title = "Служба спасения";
 		iconPicture = "icons\messagepolice.paa";
 		description = "%1";
 		duration = 10;
@@ -157,7 +157,7 @@ class CfgNotifications
 	
 	class AdminDispatch
 	{
-		title = "Admin Dispatch Center";
+		title = "Администратор";
 		iconPicture = "icons\messageadmin.paa";
 		description = "%1";
 		duration = 10;
@@ -166,7 +166,7 @@ class CfgNotifications
 	
 	class AdminMessage
 	{
-		title = "Admin Message";
+		title = "Сообщение администратору";
 		iconPicture = "icons\messageadmin.paa";
 		description = "%1";
 		duration = 10;
